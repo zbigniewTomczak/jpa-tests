@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+
+	<persistence-unit name="eclipelink-derby"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>tomczak.model.User</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:derby:eclipelink-derby;create=true" />
+			<property name="javax.persistence.jdbc.user" value="test" />
+			<property name="javax.persistence.jdbc.password" value="test" />
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
+			<property name="eclipselink.ddl-generation.output-mode"
+				value="database" />
+		</properties>
+
+	</persistence-unit>
+
+	<persistence-unit name="hibernate-derby"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>tomczak.model.User</class>
+		<properties>
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.connection.url" value="jdbc:derby:hibernate-derby;create=true" />
+			<property name="hibernate.connection.driver_class" value="org.apache.derby.jdbc.EmbeddedDriver" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect" />
+			<property name="hibernate.connection.username" value="test" />
+			<property name="hibernate.connection.password" value="test" />
+		</properties>
+	</persistence-unit>
+
+	<persistence-unit name="eclipselink-h2"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>tomczak.model.User</class>
+		<properties>
+			<property name="eclipselink.jdbc.password" value="test" />
+			<property name="eclipselink.jdbc.user" value="test" />
+			<property name="eclipselink.jdbc.driver" value="org.h2.Driver" />
+			<property name="eclipselink.jdbc.url" value="jdbc:h2:eclipselink-h2" />
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
+			<property name="eclipselink.ddl-generation.output-mode"
+				value="database" />
+		</properties>
+	</persistence-unit>
+
+	<persistence-unit name="hibernate-h2"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>tomczak.model.User</class>
+		<properties>
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.connection.url" value="jdbc:h2:hibernat2-h2" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"></property>
+			<property name="hibernate.connection.driver_class" value="org.h2.Driver" />
+			<property name="hibernate.connection.password" value="test" />
+			<property name="hibernate.connection.username" value="test" />
+		</properties>
+	</persistence-unit>
+
+
+	<!-- openjpa requires enchacement agent -->
+	<!-- persistence-unit name="openjpa-derby" transaction-type="RESOURCE_LOCAL"> 
+		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider> 
+		<class>tomczak.model.User</class> <properties> <property name="openjpa.jdbc.SynchronizeMappings" 
+		value="buildSchema" /> <property name="openjpa.ConnectionURL" value="jdbc:derby:openjpa-derby;create=true" 
+		/> <property name="openjpa.ConnectionUserName" value="test" /> <property 
+		name="openjpa.ConnectionPassword" value="test" /> <property name="openjpa.ConnectionDriverName" 
+		value="org.apache.derby.jdbc.EmbeddedDriver" /> </properties> </persistence-unit -->
+
+	<!-- toplink essentials is only for JPA 1.0 and toplink is not downloadable 
+		with maven -->
+	<!-- persistence-unit name="toplink-derby" transaction-type="RESOURCE_LOCAL"> 
+		<provider>oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider</provider> 
+		<class>tomczak.model.User</class> <properties> <property name="toplink.jdbc.driver" 
+		value="org.apache.derby.jdbc.EmbeddedDriver" /> <property name="toplink.jdbc.url" 
+		value="jdbc:derby:toplink-derby;create=true" /> <property name="toplink.jdbc.user" 
+		value="test" /> <property name="toplink.jdbc.password" value="test" /> <property 
+		name="toplink.ddl-generation" value="drop-and-create-tables" /> <property 
+		name="toplink.ddl-generation.output-mode" value="database" /> </properties> 
+		</persistence-unit -->
+</persistence>
