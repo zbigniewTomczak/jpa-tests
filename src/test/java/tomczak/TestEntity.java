@@ -6,11 +6,12 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceUnit;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
-import tomczak.model.User;
+import tomczak.model.AllEntityClass;
 
-public class TestUser {
+public class TestEntity {
 
 	@PersistenceUnit // doesn't work in SE environment
 	private EntityManagerFactory emf;
@@ -39,12 +40,17 @@ public class TestUser {
 		persistUser();
 	}
 	
+	@Test @Ignore
+	public void testObjectDbUserPersist() {
+		emf = Persistence.createEntityManagerFactory("objectdb");
+		persistUser();
+	}
+	
 	private void persistUser() {
 		EntityManager em = emf.createEntityManager();
 		try {
 			em.getTransaction().begin();
-			User u = new User();
-			u.setName("koko");
+			AllEntityClass u = new AllEntityClass();
 			em.persist(u);
 			Assert.assertNotNull(u.getId());
 			em.getTransaction().commit();
